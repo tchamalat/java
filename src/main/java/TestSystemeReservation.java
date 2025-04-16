@@ -11,7 +11,7 @@ public class TestSystemeReservation {
     public static void main(String[] args) {
         System.out.println("Exécution des tests du système de réservation aérienne...");
 
-        // Créer le répertoire data s'il n'existe pas
+        // Création du répertoire data s'il n'existe pas
         File dataDir = new File("data");
         if (!dataDir.exists()) {
             System.out.println("Création du répertoire data/ pour le stockage des fichiers...");
@@ -23,10 +23,10 @@ public class TestSystemeReservation {
 
         gestionDonnees = new GestionDonnees();
 
-        // Nettoyer les données existantes
+        // Nettoyage des données existantes
         nettoyerDonnees();
 
-        // Exécuter tous les tests
+        // Exécution des tests
         testCreationPersonne();
         testCreationAvion();
         testCreationVol();
