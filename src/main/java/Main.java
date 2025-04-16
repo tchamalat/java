@@ -14,7 +14,6 @@ public class Main {
     private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public static void main(String[] args) {
-        // Initialiser des données de test
         InitialisationDonnees.initialiserDonnees(gestionDonnees);
 
 
@@ -61,7 +60,6 @@ public class Main {
         System.out.println("\n ");
     }
 
-    // Gestion des Personnes
     private static void gestionPersonnes() {
         boolean retour = false;
         while (!retour) {
@@ -240,7 +238,6 @@ public class Main {
         }
     }
 
-    // Gestion des Vols
     private static void gestionVols() {
         boolean retour = false;
         while (!retour) {
@@ -452,7 +449,6 @@ public class Main {
         }
     }
 
-    // Gestion des Réservations
     private static void gestionReservations() {
         boolean retour = false;
         while (!retour) {
@@ -593,7 +589,6 @@ public class Main {
         }
     }
 
-    // Gestion des Avions
     private static void gestionAvions() {
         boolean retour = false;
         while (!retour) {
@@ -698,7 +693,6 @@ public class Main {
         }
     }
 
-    // Gestion des Aéroports
     private static void gestionAeroports() {
         boolean retour = false;
         while (!retour) {
@@ -785,7 +779,6 @@ public class Main {
         }
     }
 
-    // Méthodes utilitaires pour la lecture des entrées
     private static String lireChaine(String message) {
         System.out.print(message);
         return scanner.nextLine();
