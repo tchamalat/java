@@ -12,7 +12,7 @@ public class Main {
     private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public static void main(String[] args) {
-        // Initialiser des données de test blabla
+        // Initialiser des données de test
         InitialisationDonnees.initialiserDonnees(gestionDonnees);
 
         boolean continuer = true;
@@ -48,21 +48,21 @@ public class Main {
     }
 
     private static void afficherMenuPrincipal() {
-        System.out.println("\n===== SYSTÈME DE RÉSERVATION AÉRIENNE =====");
+        System.out.println("\nSYSTÈME DE RÉSERVATION AÉRIENNE");
         System.out.println("1. Gestion des Personnes");
         System.out.println("2. Gestion des Vols");
         System.out.println("3. Gestion des Réservations");
         System.out.println("4. Gestion des Avions");
         System.out.println("5. Gestion des Aéroports");
         System.out.println("0. Quitter");
-        System.out.println("==========================================");
+        System.out.println("\n ");
     }
 
     // Gestion des Personnes
     private static void gestionPersonnes() {
         boolean retour = false;
         while (!retour) {
-            System.out.println("\n===== GESTION DES PERSONNES =====");
+            System.out.println("\nGESTION DES PERSONNES");
             System.out.println("1. Ajouter un Pilote");
             System.out.println("2. Ajouter un Personnel de Cabine");
             System.out.println("3. Ajouter un Passager");
@@ -72,7 +72,7 @@ public class Main {
             System.out.println("7. Lister tout le Personnel de Cabine");
             System.out.println("8. Lister tous les Passagers");
             System.out.println("0. Retour au menu principal");
-            System.out.println("===============================");
+            System.out.println("\n");
 
             int choix = lireEntier("Entrez votre choix: ");
 
@@ -111,7 +111,7 @@ public class Main {
     }
 
     private static void ajouterPilote() {
-        System.out.println("\n=== AJOUTER UN PILOTE ===");
+        System.out.println("\nAJOUTER UN PILOTE");
         String identifiant = lireChaine("Identifiant: ");
         String nom = lireChaine("Nom: ");
         String adresse = lireChaine("Adresse: ");
@@ -127,7 +127,7 @@ public class Main {
     }
 
     private static void ajouterPersonnelCabine() {
-        System.out.println("\n=== AJOUTER UN PERSONNEL DE CABINE ===");
+        System.out.println("\nAJOUTER UN PERSONNEL DE CABINE");
         String identifiant = lireChaine("Identifiant: ");
         String nom = lireChaine("Nom: ");
         String adresse = lireChaine("Adresse: ");
@@ -142,7 +142,7 @@ public class Main {
     }
 
     private static void ajouterPassager() {
-        System.out.println("\n=== AJOUTER UN PASSAGER ===");
+        System.out.println("\nAJOUTER UN PASSAGER");
         String identifiant = lireChaine("Identifiant: ");
         String nom = lireChaine("Nom: ");
         String adresse = lireChaine("Adresse: ");
@@ -155,7 +155,7 @@ public class Main {
     }
 
     private static void afficherInfosPersonne() {
-        System.out.println("\n=== AFFICHER LES INFORMATIONS D'UNE PERSONNE ===");
+        System.out.println("\nAFFICHER LES INFORMATIONS D'UNE PERSONNE");
         String identifiant = lireChaine("Identifiant de la personne: ");
 
         Pilote pilote = gestionDonnees.trouverPilote(identifiant);
@@ -176,63 +176,63 @@ public class Main {
             return;
         }
 
-        System.out.println("Personne non trouvée avec cet identifiant.");
+        System.out.println("Aucune personne trouvée avec cet identifiant.");
     }
 
     private static void afficherRoleEmploye() {
-        System.out.println("\n=== AFFICHER LE RÔLE D'UN EMPLOYÉ ===");
-        String identifiant = lireChaine("Identifiant de l'employé: ");
+        System.out.println("\nAFFICHER LE RÔLE D'UN EMPLOYÉ");
+        String identifiant = lireChaine("Identifiant de l'employé : ");
 
         Pilote pilote = gestionDonnees.trouverPilote(identifiant);
         if (pilote != null) {
-            System.out.println("Rôle: " + pilote.obtenirRole());
+            System.out.println("Rôle : " + pilote.obtenirRole());
             return;
         }
 
         PersonnelCabine personnel = gestionDonnees.trouverPersonnelCabine(identifiant);
         if (personnel != null) {
-            System.out.println("Rôle: " + personnel.obtenirRole());
+            System.out.println("Rôle : " + personnel.obtenirRole());
             return;
         }
 
-        System.out.println("Employé non trouvé avec cet identifiant.");
+        System.out.println("Aucun employé trouvé avec cet identifiant.");
     }
 
     private static void listerPilotes() {
-        System.out.println("\n=== LISTE DES PILOTES ===");
+        System.out.println("\nLISTE DES PILOTES");
         List<Pilote> pilotes = gestionDonnees.getTousPilotes();
         if (pilotes.isEmpty()) {
             System.out.println("Aucun pilote enregistré.");
         } else {
             for (Pilote pilote : pilotes) {
                 System.out.println(pilote.obtenirInfos());
-                System.out.println("---------------------------");
+                System.out.println("\n ");
             }
         }
     }
 
     private static void listerPersonnelCabine() {
-        System.out.println("\n=== LISTE DU PERSONNEL DE CABINE ===");
+        System.out.println("\nLISTE DU PERSONNEL DE CABINE");
         List<PersonnelCabine> personnels = gestionDonnees.getTousPersonnelCabine();
         if (personnels.isEmpty()) {
             System.out.println("Aucun personnel de cabine enregistré.");
         } else {
             for (PersonnelCabine personnel : personnels) {
                 System.out.println(personnel.obtenirInfos());
-                System.out.println("---------------------------");
+                System.out.println("\n ");
             }
         }
     }
 
     private static void listerPassagers() {
-        System.out.println("\n=== LISTE DES PASSAGERS ===");
+        System.out.println("\nLISTE DES PASSAGERS");
         List<Passager> passagers = gestionDonnees.getTousPassagers();
         if (passagers.isEmpty()) {
             System.out.println("Aucun passager enregistré.");
         } else {
             for (Passager passager : passagers) {
                 System.out.println(passager.obtenirInfos());
-                System.out.println("---------------------------");
+                System.out.println("\n ");
             }
         }
     }
@@ -241,7 +241,7 @@ public class Main {
     private static void gestionVols() {
         boolean retour = false;
         while (!retour) {
-            System.out.println("\n===== GESTION DES VOLS =====");
+            System.out.println("\nGESTION DES VOLS");
             System.out.println("1. Planifier un Vol");
             System.out.println("2. Afficher les informations d'un Vol");
             System.out.println("3. Annuler un Vol");
@@ -251,9 +251,9 @@ public class Main {
             System.out.println("7. Lister tous les Vols");
             System.out.println("8. Lister les Passagers d'un Vol");
             System.out.println("0. Retour au menu principal");
-            System.out.println("===========================");
+            System.out.println("\n");
 
-            int choix = lireEntier("Entrez votre choix: ");
+            int choix = lireEntier("Entrez votre choix : ");
 
             switch (choix) {
                 case 1:
@@ -290,98 +290,98 @@ public class Main {
     }
 
     private static void planifierVol() {
-        System.out.println("\n=== PLANIFIER UN VOL ===");
-        String numeroVol = lireChaine("Numéro de vol: ");
-        String origine = lireChaine("Origine: ");
-        String destination = lireChaine("Destination: ");
-        LocalDateTime dateHeureDepart = lireDateTime("Date et heure de départ (jj/mm/aaaa HH:mm): ");
-        LocalDateTime dateHeureArrivee = lireDateTime("Date et heure d'arrivée (jj/mm/aaaa HH:mm): ");
+        System.out.println("\nPLANIFIER UN VOL");
+        String numeroVol = lireChaine("Numéro de vol : ");
+        String origine = lireChaine("Origine : ");
+        String destination = lireChaine("Destination : ");
+        LocalDateTime dateHeureDepart = lireDateTime("Date et heure de départ (jj/mm/aaaa HH:mm) : ");
+        LocalDateTime dateHeureArrivee = lireDateTime("Date et heure d'arrivée (jj/mm/aaaa HH:mm) : ");
 
         Vol vol = new Vol(numeroVol, origine, destination, dateHeureDepart, dateHeureArrivee);
         Vol.planifierVol(vol, gestionDonnees);
-        System.out.println("Vol planifié avec succès!");
+        System.out.println("Vol planifié avec succès !");
     }
 
     private static void afficherInfosVol() {
-        System.out.println("\n=== AFFICHER LES INFORMATIONS D'UN VOL ===");
+        System.out.println("\nAFFICHER LES INFORMATIONS D'UN VOL");
         String numeroVol = lireChaine("Numéro de vol: ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
         if (vol != null) {
-            System.out.println("Numéro de vol: " + vol.getNumeroVol());
-            System.out.println("Origine: " + vol.getOrigine());
-            System.out.println("Destination: " + vol.getDestination());
-            System.out.println("Date et heure de départ: " + vol.getDateHeureDepart().format(dateTimeFormatter));
-            System.out.println("Date et heure d'arrivée: " + vol.getDateHeureArrivee().format(dateTimeFormatter));
-            System.out.println("État: " + vol.getEtat());
+            System.out.println("Numéro de vol : " + vol.getNumeroVol());
+            System.out.println("Origine : " + vol.getOrigine());
+            System.out.println("Destination : " + vol.getDestination());
+            System.out.println("Date et heure de départ : " + vol.getDateHeureDepart().format(dateTimeFormatter));
+            System.out.println("Date et heure d'arrivée : " + vol.getDateHeureArrivee().format(dateTimeFormatter));
+            System.out.println("État : " + vol.getEtat());
 
             if (vol.getAvion() != null) {
-                System.out.println("Avion: " + vol.getAvion().getImmatriculation() + " (" + vol.getAvion().getModele() + ")");
+                System.out.println("Avion : " + vol.getAvion().getImmatriculation() + " (" + vol.getAvion().getModele() + ")");
             }
 
             if (vol.getPilote() != null) {
-                System.out.println("Pilote: " + vol.getPilote().getNom());
+                System.out.println("Pilote : " + vol.getPilote().getNom());
             }
 
-            System.out.println("Nombre de passagers: " + vol.getPassagers().size());
+            System.out.println("Nombre de passagers : " + vol.getPassagers().size());
         } else {
-            System.out.println("Vol non trouvé avec ce numéro.");
+            System.out.println("Aucun vol trouvé avec ce numéro.");
         }
     }
 
     private static void annulerVol() {
-        System.out.println("\n=== ANNULER UN VOL ===");
-        String numeroVol = lireChaine("Numéro de vol: ");
+        System.out.println("\nANNULER UN VOL");
+        String numeroVol = lireChaine("Numéro de vol : ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
         if (vol != null) {
             if (vol.annulerVol(gestionDonnees)) {
-                System.out.println("Vol annulé avec succès!");
+                System.out.println("Vol annulé avec succès !");
             } else {
                 System.out.println("Le vol est déjà annulé.");
             }
         } else {
-            System.out.println("Vol non trouvé avec ce numéro.");
+            System.out.println("Aucun vol trouvé avec ce numéro.");
         }
     }
 
     private static void modifierVol() {
-        System.out.println("\n=== MODIFIER UN VOL ===");
-        String numeroVol = lireChaine("Numéro de vol: ");
+        System.out.println("\nMODIFIER UN VOL");
+        String numeroVol = lireChaine("Numéro de vol : ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
 
         if (vol != null) {
-            String origine = lireChaine("Nouvelle origine (actuelle: " + vol.getOrigine() + "): ");
-            String destination = lireChaine("Nouvelle destination (actuelle: " + vol.getDestination() + "): ");
-            LocalDateTime dateHeureDepart = lireDateTime("Nouvelle date et heure de départ (actuelle: " +
-                    vol.getDateHeureDepart().format(dateTimeFormatter) + "): ");
-            LocalDateTime dateHeureArrivee = lireDateTime("Nouvelle date et heure d'arrivée (actuelle: " +
-                    vol.getDateHeureArrivee().format(dateTimeFormatter) + "): ");
+            String origine = lireChaine("Nouvelle origine (actuelle : " + vol.getOrigine() + ") : ");
+            String destination = lireChaine("Nouvelle destination (actuelle : " + vol.getDestination() + ") : ");
+            LocalDateTime dateHeureDepart = lireDateTime("Nouvelle date et heure de départ (actuelle : " +
+                    vol.getDateHeureDepart().format(dateTimeFormatter) + ") : ");
+            LocalDateTime dateHeureArrivee = lireDateTime("Nouvelle date et heure d'arrivée (actuelle : " +
+                    vol.getDateHeureArrivee().format(dateTimeFormatter) + ") : ");
 
             if (vol.modifierVol(origine, destination, dateHeureDepart, dateHeureArrivee, gestionDonnees)) {
-                System.out.println("Vol modifié avec succès!");
+                System.out.println("Vol modifié avec succès !");
             } else {
                 System.out.println("Erreur lors de la modification du vol.");
             }
         } else {
-            System.out.println("Vol non trouvé avec ce numéro.");
+            System.out.println("Aucun vol trouvé avec ce numéro.");
         }
     }
 
     private static void affecterPiloteVol() {
-        System.out.println("\n=== AFFECTER UN PILOTE À UN VOL ===");
-        String numeroVol = lireChaine("Numéro de vol: ");
+        System.out.println("\nAFFECTER UN PILOTE À UN VOL");
+        String numeroVol = lireChaine("Numéro de vol : ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
         if (vol != null) {
-            String idPilote = lireChaine("Identifiant du pilote: ");
+            String idPilote = lireChaine("Identifiant du pilote : ");
             Pilote pilote = gestionDonnees.trouverPilote(idPilote);
 
             if (pilote != null) {
                 pilote.affecterVol(vol);
                 vol.modifierVol(gestionDonnees);
-                System.out.println("Pilote affecté au vol avec succès!");
+                System.out.println("Pilote affecté au vol avec succès !");
             } else {
                 System.out.println("Pilote non trouvé avec cet identifiant.");
             }
@@ -391,7 +391,7 @@ public class Main {
     }
 
     private static void affecterPersonnelCabineVol() {
-        System.out.println("\n=== AFFECTER UN PERSONNEL DE CABINE À UN VOL ===");
+        System.out.println("\nAFFECTER UN PERSONNEL DE CABINE À UN VOL");
         String numeroVol = lireChaine("Numéro de vol: ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
