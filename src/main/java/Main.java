@@ -18,7 +18,7 @@ public class Main {
         boolean continuer = true;
         while (continuer) {
             afficherMenuPrincipal();
-            int choix = lireEntier("Entrez votre choix: ");
+            int choix = lireEntier("Entrez votre choix : ");
 
             switch (choix) {
                 case 1:
@@ -38,7 +38,7 @@ public class Main {
                     break;
                 case 0:
                     continuer = false;
-                    System.out.println("Au revoir!");
+                    System.out.println("Au revoir !");
                     break;
                 default:
                     System.out.println("Choix invalide. Veuillez réessayer.");
@@ -74,7 +74,7 @@ public class Main {
             System.out.println("0. Retour au menu principal");
             System.out.println("\n");
 
-            int choix = lireEntier("Entrez votre choix: ");
+            int choix = lireEntier("Entrez votre choix : ");
 
             switch (choix) {
                 case 1:
@@ -112,51 +112,51 @@ public class Main {
 
     private static void ajouterPilote() {
         System.out.println("\nAJOUTER UN PILOTE");
-        String identifiant = lireChaine("Identifiant: ");
-        String nom = lireChaine("Nom: ");
-        String adresse = lireChaine("Adresse: ");
-        String contact = lireChaine("Contact: ");
-        String numeroEmploye = lireChaine("Numéro d'employé: ");
-        LocalDate dateEmbauche = lireDate("Date d'embauche (jj/mm/aaaa): ");
-        String licence = lireChaine("Licence: ");
-        int heuresDeVol = lireEntier("Heures de vol: ");
+        String identifiant = lireChaine("Identifiant : ");
+        String nom = lireChaine("Nom : ");
+        String adresse = lireChaine("Adresse : ");
+        String contact = lireChaine("Contact : ");
+        String numeroEmploye = lireChaine("Numéro d'employé : ");
+        LocalDate dateEmbauche = lireDate("Date d'embauche (jj/mm/aaaa) : ");
+        String licence = lireChaine("Licence : ");
+        int heuresDeVol = lireEntier("Heures de vol : ");
 
         Pilote pilote = new Pilote(identifiant, nom, adresse, contact, numeroEmploye, dateEmbauche, licence, heuresDeVol);
         pilote.ajouterPilote(gestionDonnees);
-        System.out.println("Pilote ajouté avec succès!");
+        System.out.println("Pilote ajouté avec succès !");
     }
 
     private static void ajouterPersonnelCabine() {
         System.out.println("\nAJOUTER UN PERSONNEL DE CABINE");
-        String identifiant = lireChaine("Identifiant: ");
-        String nom = lireChaine("Nom: ");
-        String adresse = lireChaine("Adresse: ");
-        String contact = lireChaine("Contact: ");
-        String numeroEmploye = lireChaine("Numéro d'employé: ");
-        LocalDate dateEmbauche = lireDate("Date d'embauche (jj/mm/aaaa): ");
-        String qualification = lireChaine("Qualification: ");
+        String identifiant = lireChaine("Identifiant : ");
+        String nom = lireChaine("Nom : ");
+        String adresse = lireChaine("Adresse : ");
+        String contact = lireChaine("Contact : ");
+        String numeroEmploye = lireChaine("Numéro d'employé : ");
+        LocalDate dateEmbauche = lireDate("Date d'embauche (jj/mm/aaaa) : ");
+        String qualification = lireChaine("Qualification : ");
 
         PersonnelCabine personnel = new PersonnelCabine(identifiant, nom, adresse, contact, numeroEmploye, dateEmbauche, qualification);
         personnel.ajouterPersonnelCabine(gestionDonnees);
-        System.out.println("Personnel de cabine ajouté avec succès!");
+        System.out.println("Personnel de cabine ajouté avec succès !");
     }
 
     private static void ajouterPassager() {
         System.out.println("\nAJOUTER UN PASSAGER");
-        String identifiant = lireChaine("Identifiant: ");
-        String nom = lireChaine("Nom: ");
-        String adresse = lireChaine("Adresse: ");
-        String contact = lireChaine("Contact: ");
-        String passeport = lireChaine("Numéro de passeport: ");
+        String identifiant = lireChaine("Identifiant : ");
+        String nom = lireChaine("Nom : ");
+        String adresse = lireChaine("Adresse : ");
+        String contact = lireChaine("Contact : ");
+        String passeport = lireChaine("Numéro de passeport : ");
 
         Passager passager = new Passager(identifiant, nom, adresse, contact, passeport);
         passager.ajouterPassager(gestionDonnees);
-        System.out.println("Passager ajouté avec succès!");
+        System.out.println("Passager ajouté avec succès !");
     }
 
     private static void afficherInfosPersonne() {
         System.out.println("\nAFFICHER LES INFORMATIONS D'UNE PERSONNE");
-        String identifiant = lireChaine("Identifiant de la personne: ");
+        String identifiant = lireChaine("Identifiant de la personne : ");
 
         Pilote pilote = gestionDonnees.trouverPilote(identifiant);
         if (pilote != null) {
@@ -304,7 +304,7 @@ public class Main {
 
     private static void afficherInfosVol() {
         System.out.println("\nAFFICHER LES INFORMATIONS D'UN VOL");
-        String numeroVol = lireChaine("Numéro de vol: ");
+        String numeroVol = lireChaine("Numéro de vol : ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
         if (vol != null) {
@@ -392,11 +392,11 @@ public class Main {
 
     private static void affecterPersonnelCabineVol() {
         System.out.println("\nAFFECTER UN PERSONNEL DE CABINE À UN VOL");
-        String numeroVol = lireChaine("Numéro de vol: ");
+        String numeroVol = lireChaine("Numéro de vol : ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
         if (vol != null) {
-            String idPersonnel = lireChaine("Identifiant du personnel de cabine: ");
+            String idPersonnel = lireChaine("Identifiant du personnel de cabine : ");
             PersonnelCabine personnel = gestionDonnees.trouverPersonnelCabine(idPersonnel);
 
             if (personnel != null) {
@@ -412,26 +412,26 @@ public class Main {
     }
 
     private static void listerVols() {
-        System.out.println("\n=== LISTE DES VOLS ===");
+        System.out.println("\nLISTE DES VOLS");
         List<Vol> vols = gestionDonnees.getTousVols();
         if (vols.isEmpty()) {
             System.out.println("Aucun vol enregistré.");
         } else {
             for (Vol vol : vols) {
-                System.out.println("Numéro: " + vol.getNumeroVol());
-                System.out.println("Origine: " + vol.getOrigine());
-                System.out.println("Destination: " + vol.getDestination());
-                System.out.println("Départ: " + vol.getDateHeureDepart().format(dateTimeFormatter));
-                System.out.println("Arrivée: " + vol.getDateHeureArrivee().format(dateTimeFormatter));
-                System.out.println("État: " + vol.getEtat());
-                System.out.println("---------------------------");
+                System.out.println("Numéro : " + vol.getNumeroVol());
+                System.out.println("Origine : " + vol.getOrigine());
+                System.out.println("Destination : " + vol.getDestination());
+                System.out.println("Départ : " + vol.getDateHeureDepart().format(dateTimeFormatter));
+                System.out.println("Arrivée : " + vol.getDateHeureArrivee().format(dateTimeFormatter));
+                System.out.println("État : " + vol.getEtat());
+                System.out.println("\n");
             }
         }
     }
 
     private static void listerPassagersVol() {
-        System.out.println("\n=== LISTER LES PASSAGERS D'UN VOL ===");
-        String numeroVol = lireChaine("Numéro de vol: ");
+        System.out.println("\nLISTER LES PASSAGERS D'UN VOL");
+        String numeroVol = lireChaine("Numéro de vol : ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
         if (vol != null) {
@@ -439,13 +439,13 @@ public class Main {
             if (passagers.isEmpty()) {
                 System.out.println("Aucun passager enregistré pour ce vol.");
             } else {
-                System.out.println("Passagers du vol " + vol.getNumeroVol() + ":");
+                System.out.println("Passagers du vol " + vol.getNumeroVol() + " :");
                 for (Passager passager : passagers) {
-                    System.out.println("- " + passager.getNom() + " (ID: " + passager.getIdentifiant() + ")");
+                    System.out.println("- " + passager.getNom() + " (ID : " + passager.getIdentifiant() + ")");
                 }
             }
         } else {
-            System.out.println("Vol non trouvé avec ce numéro.");
+            System.out.println("Aucun vol trouvé avec ce numéro.");
         }
     }
 
@@ -453,16 +453,16 @@ public class Main {
     private static void gestionReservations() {
         boolean retour = false;
         while (!retour) {
-            System.out.println("\n===== GESTION DES RÉSERVATIONS =====");
+            System.out.println("\nGESTION DES RÉSERVATIONS");
             System.out.println("1. Réserver un Vol");
             System.out.println("2. Annuler une Réservation");
             System.out.println("3. Afficher les informations d'une Réservation");
             System.out.println("4. Lister toutes les Réservations");
             System.out.println("5. Lister les Réservations d'un Passager");
             System.out.println("0. Retour au menu principal");
-            System.out.println("==================================");
+            System.out.println("\n");
 
-            int choix = lireEntier("Entrez votre choix: ");
+            int choix = lireEntier("Entrez votre choix : ");
 
             switch (choix) {
                 case 1:
@@ -490,12 +490,12 @@ public class Main {
     }
 
     private static void reserverVol() {
-        System.out.println("\n=== RÉSERVER UN VOL ===");
-        String idPassager = lireChaine("Identifiant du passager: ");
+        System.out.println("\nRÉSERVER UN VOL");
+        String idPassager = lireChaine("Identifiant du passager : ");
 
         Passager passager = gestionDonnees.trouverPassager(idPassager);
         if (passager != null) {
-            String numeroVol = lireChaine("Numéro de vol: ");
+            String numeroVol = lireChaine("Numéro de vol : ");
             Vol vol = gestionDonnees.trouverVol(numeroVol);
 
             if (vol != null) {
@@ -506,8 +506,8 @@ public class Main {
 
                 String numeroReservation = "RES" + System.currentTimeMillis();
                 Reservation reservation = passager.reserverVol(vol, numeroReservation, gestionDonnees);
-                System.out.println("Réservation effectuée avec succès!");
-                System.out.println("Numéro de réservation: " + reservation.getNumeroReservation());
+                System.out.println("Réservation effectuée avec succès !");
+                System.out.println("Numéro de réservation : " + reservation.getNumeroReservation());
             } else {
                 System.out.println("Vol non trouvé avec ce numéro.");
             }
@@ -517,59 +517,59 @@ public class Main {
     }
 
     private static void annulerReservation() {
-        System.out.println("\n=== ANNULER UNE RÉSERVATION ===");
-        String idPassager = lireChaine("Identifiant du passager: ");
+        System.out.println("\nANNULER UNE RÉSERVATION");
+        String idPassager = lireChaine("Identifiant du passager : ");
 
         Passager passager = gestionDonnees.trouverPassager(idPassager);
         if (passager != null) {
-            String numeroReservation = lireChaine("Numéro de réservation: ");
+            String numeroReservation = lireChaine("Numéro de réservation : ");
 
             if (passager.annulerReservation(numeroReservation, gestionDonnees)) {
-                System.out.println("Réservation annulée avec succès!");
+                System.out.println("Réservation annulée avec succès !");
             } else {
                 System.out.println("Réservation non trouvée ou déjà annulée.");
             }
         } else {
-            System.out.println("Passager non trouvé avec cet identifiant.");
+            System.out.println("Aucun passager trouvé avec cet identifiant.");
         }
     }
 
     private static void afficherInfosReservation() {
-        System.out.println("\n=== AFFICHER LES INFORMATIONS D'UNE RÉSERVATION ===");
-        String numeroReservation = lireChaine("Numéro de réservation: ");
+        System.out.println("\nAFFICHER LES INFORMATIONS D'UNE RÉSERVATION");
+        String numeroReservation = lireChaine("Numéro de réservation : ");
 
         Reservation reservation = gestionDonnees.trouverReservation(numeroReservation);
         if (reservation != null) {
-            System.out.println("Numéro de réservation: " + reservation.getNumeroReservation());
-            System.out.println("Date de réservation: " + reservation.getDateReservation().format(dateFormatter));
-            System.out.println("Statut: " + reservation.getStatut());
-            System.out.println("Vol: " + reservation.getVol().getNumeroVol());
-            System.out.println("Passager: " + reservation.getPassager().getNom());
+            System.out.println("Numéro de réservation : " + reservation.getNumeroReservation());
+            System.out.println("Date de réservation : " + reservation.getDateReservation().format(dateFormatter));
+            System.out.println("Statut : " + reservation.getStatut());
+            System.out.println("Vol : " + reservation.getVol().getNumeroVol());
+            System.out.println("Passager : " + reservation.getPassager().getNom());
         } else {
             System.out.println("Réservation non trouvée avec ce numéro.");
         }
     }
 
     private static void listerReservations() {
-        System.out.println("\n=== LISTE DES RÉSERVATIONS ===");
+        System.out.println("\nLISTE DES RÉSERVATIONS");
         List<Reservation> reservations = gestionDonnees.getToutesReservations();
         if (reservations.isEmpty()) {
             System.out.println("Aucune réservation enregistrée.");
         } else {
             for (Reservation reservation : reservations) {
-                System.out.println("Numéro: " + reservation.getNumeroReservation());
-                System.out.println("Date: " + reservation.getDateReservation().format(dateFormatter));
-                System.out.println("Statut: " + reservation.getStatut());
-                System.out.println("Vol: " + reservation.getVol().getNumeroVol());
-                System.out.println("Passager: " + reservation.getPassager().getNom());
-                System.out.println("---------------------------");
+                System.out.println("Numéro : " + reservation.getNumeroReservation());
+                System.out.println("Date : " + reservation.getDateReservation().format(dateFormatter));
+                System.out.println("Statut : " + reservation.getStatut());
+                System.out.println("Vol : " + reservation.getVol().getNumeroVol());
+                System.out.println("Passager : " + reservation.getPassager().getNom());
+                System.out.println("\n ");
             }
         }
     }
 
     private static void listerReservationsPassager() {
-        System.out.println("\n=== LISTER LES RÉSERVATIONS D'UN PASSAGER ===");
-        String idPassager = lireChaine("Identifiant du passager: ");
+        System.out.println("\nLISTER LES RÉSERVATIONS D'UN PASSAGER");
+        String idPassager = lireChaine("Identifiant du passager : ");
 
         Passager passager = gestionDonnees.trouverPassager(idPassager);
         if (passager != null) {
@@ -577,12 +577,12 @@ public class Main {
             if (reservations.isEmpty()) {
                 System.out.println("Aucune réservation enregistrée pour ce passager.");
             } else {
-                System.out.println("Réservations de " + passager.getNom() + ":");
+                System.out.println("Réservations de " + passager.getNom() + " :");
                 for (Reservation reservation : reservations) {
-                    System.out.println("- Numéro: " + reservation.getNumeroReservation());
-                    System.out.println("  Vol: " + reservation.getVol().getNumeroVol());
-                    System.out.println("  Statut: " + reservation.getStatut());
-                    System.out.println("  ---------------------------");
+                    System.out.println("- Numéro : " + reservation.getNumeroReservation());
+                    System.out.println("  Vol : " + reservation.getVol().getNumeroVol());
+                    System.out.println("  Statut : " + reservation.getStatut());
+                    System.out.println("\n ");
                 }
             }
         } else {
@@ -594,15 +594,15 @@ public class Main {
     private static void gestionAvions() {
         boolean retour = false;
         while (!retour) {
-            System.out.println("\n===== GESTION DES AVIONS =====");
+            System.out.println("\nGESTION DES AVIONS");
             System.out.println("1. Ajouter un Avion");
             System.out.println("2. Affecter un Avion à un Vol");
             System.out.println("3. Vérifier la Disponibilité d'un Avion");
             System.out.println("4. Lister tous les Avions");
             System.out.println("0. Retour au menu principal");
-            System.out.println("============================");
+            System.out.println("\n ");
 
-            int choix = lireEntier("Entrez votre choix: ");
+            int choix = lireEntier("Entrez votre choix : ");
 
             switch (choix) {
                 case 1:
@@ -627,29 +627,29 @@ public class Main {
     }
 
     private static void ajouterAvion() {
-        System.out.println("\n=== AJOUTER UN AVION ===");
-        String immatriculation = lireChaine("Immatriculation: ");
-        String modele = lireChaine("Modèle: ");
-        int capacite = lireEntier("Capacité: ");
+        System.out.println("\nAJOUTER UN AVION");
+        String immatriculation = lireChaine("Immatriculation : ");
+        String modele = lireChaine("Modèle : ");
+        int capacite = lireEntier("Capacité : ");
 
         Avion avion = new Avion(immatriculation, modele, capacite);
         avion.ajouterAvion(gestionDonnees);
-        System.out.println("Avion ajouté avec succès!");
+        System.out.println("Avion ajouté avec succès !");
     }
 
     private static void affecterAvionVol() {
-        System.out.println("\n=== AFFECTER UN AVION À UN VOL ===");
-        String numeroVol = lireChaine("Numéro de vol: ");
+        System.out.println("\nAFFECTER UN AVION À UN VOL");
+        String numeroVol = lireChaine("Numéro de vol : ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
         if (vol != null) {
-            String immatriculation = lireChaine("Immatriculation de l'avion: ");
+            String immatriculation = lireChaine("Immatriculation de l'avion : ");
             Avion avion = gestionDonnees.trouverAvion(immatriculation);
 
             if (avion != null) {
                 if (avion.affecterVol(vol)) {
                     vol.modifierVol(gestionDonnees);
-                    System.out.println("Avion affecté au vol avec succès!");
+                    System.out.println("Avion affecté au vol avec succès !");
                 } else {
                     System.out.println("L'avion n'est pas disponible pour ce vol.");
                 }
@@ -657,18 +657,18 @@ public class Main {
                 System.out.println("Avion non trouvé avec cette immatriculation.");
             }
         } else {
-            System.out.println("Vol non trouvé avec ce numéro.");
+            System.out.println("Aucun vol trouvé avec ce numéro.");
         }
     }
 
     private static void verifierDisponibiliteAvion() {
-        System.out.println("\n=== VÉRIFIER LA DISPONIBILITÉ D'UN AVION ===");
-        String immatriculation = lireChaine("Immatriculation de l'avion: ");
+        System.out.println("\nVÉRIFIER LA DISPONIBILITÉ D'UN AVION");
+        String immatriculation = lireChaine("Immatriculation de l'avion : ");
 
         Avion avion = gestionDonnees.trouverAvion(immatriculation);
         if (avion != null) {
-            LocalDateTime debut = lireDateTime("Date et heure de début (jj/mm/aaaa HH:mm): ");
-            LocalDateTime fin = lireDateTime("Date et heure de fin (jj/mm/aaaa HH:mm): ");
+            LocalDateTime debut = lireDateTime("Date et heure de début (jj/mm/aaaa HH:mm) : ");
+            LocalDateTime fin = lireDateTime("Date et heure de fin (jj/mm/aaaa HH:mm) : ");
 
             if (avion.verifierDisponibilite(debut, fin)) {
                 System.out.println("L'avion est disponible pour cette période.");
@@ -676,21 +676,21 @@ public class Main {
                 System.out.println("L'avion n'est pas disponible pour cette période.");
             }
         } else {
-            System.out.println("Avion non trouvé avec cette immatriculation.");
+            System.out.println("Aucun avion trouvé avec cette immatriculation.");
         }
     }
 
     private static void listerAvions() {
-        System.out.println("\n=== LISTE DES AVIONS ===");
+        System.out.println("\nLISTE DES AVIONS");
         List<Avion> avions = gestionDonnees.getTousAvions();
         if (avions.isEmpty()) {
             System.out.println("Aucun avion enregistré.");
         } else {
             for (Avion avion : avions) {
-                System.out.println("Immatriculation: " + avion.getImmatriculation());
-                System.out.println("Modèle: " + avion.getModele());
-                System.out.println("Capacité: " + avion.getCapacite());
-                System.out.println("---------------------------");
+                System.out.println("Immatriculation : " + avion.getImmatriculation());
+                System.out.println("Modèle : " + avion.getModele());
+                System.out.println("Capacité : " + avion.getCapacite());
+                System.out.println("\n ");
             }
         }
     }
@@ -699,14 +699,14 @@ public class Main {
     private static void gestionAeroports() {
         boolean retour = false;
         while (!retour) {
-            System.out.println("\n===== GESTION DES AÉROPORTS =====");
+            System.out.println("\nGESTION DES AÉROPORTS");
             System.out.println("1. Ajouter un Aéroport");
             System.out.println("2. Affecter un Vol à un Aéroport");
             System.out.println("3. Lister tous les Aéroports");
             System.out.println("0. Retour au menu principal");
-            System.out.println("==============================");
+            System.out.println("\n ");
 
-            int choix = lireEntier("Entrez votre choix: ");
+            int choix = lireEntier("Entrez votre choix : ");
 
             switch (choix) {
                 case 1:
@@ -728,36 +728,36 @@ public class Main {
     }
 
     private static void ajouterAeroport() {
-        System.out.println("\n=== AJOUTER UN AÉROPORT ===");
-        String nom = lireChaine("Nom: ");
-        String ville = lireChaine("Ville: ");
-        String description = lireChaine("Description: ");
+        System.out.println("\nAJOUTER UN AÉROPORT");
+        String nom = lireChaine("Nom : ");
+        String ville = lireChaine("Ville : ");
+        String description = lireChaine("Description : ");
 
         Aeroport aeroport = new Aeroport(nom, ville, description);
         aeroport.ajouterAeroport(gestionDonnees);
-        System.out.println("Aéroport ajouté avec succès!");
+        System.out.println("Aéroport ajouté avec succès !");
     }
 
     private static void affecterVolAeroport() {
-        System.out.println("\n=== AFFECTER UN VOL À UN AÉROPORT ===");
-        String numeroVol = lireChaine("Numéro de vol: ");
+        System.out.println("\nAFFECTER UN VOL À UN AÉROPORT");
+        String numeroVol = lireChaine("Numéro de vol : ");
 
         Vol vol = gestionDonnees.trouverVol(numeroVol);
         if (vol != null) {
             System.out.println("1. Aéroport de départ");
             System.out.println("2. Aéroport d'arrivée");
-            int type = lireEntier("Type d'aéroport: ");
+            int type = lireEntier("Type d'aéroport : ");
 
             if (type == 1 || type == 2) {
-                String nomAeroport = lireChaine("Nom de l'aéroport: ");
+                String nomAeroport = lireChaine("Nom de l'aéroport : ");
                 Aeroport aeroport = gestionDonnees.trouverAeroport(nomAeroport);
 
                 if (aeroport != null) {
                     aeroport.affecterVol(vol, type == 1);
                     vol.modifierVol(gestionDonnees);
-                    System.out.println("Vol affecté à l'aéroport avec succès!");
+                    System.out.println("Vol affecté à l'aéroport avec succès !");
                 } else {
-                    System.out.println("Aéroport non trouvé avec ce nom.");
+                    System.out.println("Aucun aéroport trouvé avec ce nom.");
                 }
             } else {
                 System.out.println("Type d'aéroport invalide.");
@@ -768,16 +768,16 @@ public class Main {
     }
 
     private static void listerAeroports() {
-        System.out.println("\n=== LISTE DES AÉROPORTS ===");
+        System.out.println("\nLISTE DES AÉROPORTS");
         List<Aeroport> aeroports = gestionDonnees.getTousAeroports();
         if (aeroports.isEmpty()) {
             System.out.println("Aucun aéroport enregistré.");
         } else {
             for (Aeroport aeroport : aeroports) {
-                System.out.println("Nom: " + aeroport.getNom());
-                System.out.println("Ville: " + aeroport.getVille());
-                System.out.println("Description: " + aeroport.getDescription());
-                System.out.println("---------------------------");
+                System.out.println("Nom : " + aeroport.getNom());
+                System.out.println("Ville : " + aeroport.getVille());
+                System.out.println("Description : " + aeroport.getDescription());
+                System.out.println("\n ");
             }
         }
     }
