@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    //écriture de toutes les fonctionnalités pour modifier le contenu des classes
     private static GestionDonnees gestionDonnees = new GestionDonnees();
     private static Scanner scanner = new Scanner(System.in);
     private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
