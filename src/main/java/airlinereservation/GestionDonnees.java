@@ -39,7 +39,7 @@ public class GestionDonnees {
         chargerDonnees();
     }
 
-    // Méthodes pour Pilote
+    // Gestion de Pilote
     public void ajouterPilote(Pilote pilote) {
         pilotes.put(pilote.getIdentifiant(), pilote);
         sauvegarderPilotes();
@@ -63,7 +63,7 @@ public class GestionDonnees {
         }
     }
 
-    // Méthodes pour PersonnelCabine
+    // Gestion de PersonnelCabine
     public void ajouterPersonnelCabine(PersonnelCabine personnel) {
         personnelCabine.put(personnel.getIdentifiant(), personnel);
         sauvegarderPersonnelCabine();
@@ -87,7 +87,7 @@ public class GestionDonnees {
         }
     }
 
-    // Méthodes pour Passager
+    // Gestion de Passager
     public void ajouterPassager(Passager passager) {
         passagers.put(passager.getIdentifiant(), passager);
         sauvegarderPassagers();
@@ -111,7 +111,7 @@ public class GestionDonnees {
         }
     }
 
-    // Méthodes pour Avion
+    // Gestion de Avion
     public void ajouterAvion(Avion avion) {
         avions.put(avion.getImmatriculation(), avion);
         sauvegarderAvions();
@@ -135,7 +135,7 @@ public class GestionDonnees {
         }
     }
 
-    // Méthodes pour Vol
+    // Gestion de Vol
     public void ajouterVol(Vol vol) {
         vols.put(vol.getNumeroVol(), vol);
         sauvegarderVols();
@@ -159,7 +159,7 @@ public class GestionDonnees {
         }
     }
 
-    // Méthodes pour Reservation
+    // Gestion de Reservation
     public void ajouterReservation(Reservation reservation) {
         reservations.put(reservation.getNumeroReservation(), reservation);
         sauvegarderReservations();
@@ -183,7 +183,7 @@ public class GestionDonnees {
         }
     }
 
-    // Méthodes pour Aeroport
+    // Gestion de Aeroport
     public void ajouterAeroport(Aeroport aeroport) {
         aeroports.put(aeroport.getNom(), aeroport);
         sauvegarderAeroports();
@@ -207,7 +207,7 @@ public class GestionDonnees {
         }
     }
 
-    // Méthodes pour obtenir toutes les entités
+    // Pour obtenir toutes les entités d'une catégorie
     public List<Pilote> getTousPilotes() {
         return new ArrayList<>(pilotes.values());
     }
@@ -236,7 +236,7 @@ public class GestionDonnees {
         return new ArrayList<>(aeroports.values());
     }
 
-    // Méthodes de sauvegarde
+    // Gestion de la sauvegarde
     private void sauvegarderPilotes() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PILOTES_FILE))) {
             oos.writeObject(new ArrayList<>(pilotes.values()));
@@ -293,7 +293,7 @@ public class GestionDonnees {
         }
     }
 
-    // Méthodes de chargement
+    // Gestion du chargement
     @SuppressWarnings("unchecked")
     private void chargerDonnees() {
         // Créer le répertoire data s'il n'existe pas
@@ -390,3 +390,4 @@ public class GestionDonnees {
         }
     }
 }
+
