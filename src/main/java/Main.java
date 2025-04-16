@@ -12,7 +12,7 @@ public class Main {
     private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public static void main(String[] args) {
-        // Initialiser des données de test
+        // Initialiser des données de test blabla
         InitialisationDonnees.initialiserDonnees(gestionDonnees);
 
         boolean continuer = true;
