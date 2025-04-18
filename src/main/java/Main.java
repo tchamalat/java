@@ -788,7 +788,7 @@ public class Main {
         boolean retour = false;
         while (!retour) {
             System.out.println("\nAdministration");
-            System.out.println("1. supprimer des données");
+            System.out.println("1. supprimer toutes les données");
             System.out.println("2. importer des données");
             System.out.println("3. exporter les données");
             System.out.println("0. Retour au menu principal");
@@ -798,7 +798,7 @@ public class Main {
 
             switch (choix) {
                 case 1:
-                    SuppressionAdministration();
+                    SuppressionTout();
                     break;
                 case 2:
                     //ImportationAdministration();
@@ -815,40 +815,8 @@ public class Main {
         }
     }
 
-
-    private static void SuppressionAdministration() {
-        boolean retour = false;
-        while (!retour) {
-            System.out.println("\nsupprimer des données");
-            System.out.println("1. supprimer toutes les données");
-            System.out.println("2. supprimer un fichier");
-            System.out.println("3. retour");
-            System.out.println("0. Retour au menu principal");
-            System.out.println("\n ");
-
-            int choix = lireEntier("Entrez votre choix : ");
-
-            switch (choix) {
-                case 1:
-                    SuppressionTout();
-                    break;
-                case 2:
-                    SuppressionFichier();
-                    break;
-                case 3:
-                    Administration();
-                    break;
-                case 0:
-                    retour = true;
-                    break;
-                default:
-                    System.out.println("Choix invalide. Veuillez réessayer.");
-            }
-        }
-    }
-
     private static void SuppressionTout() {
-        System.out.println("\n=== SUPPRIMER TOUTES LES DONNÉES ===");
+        System.out.println("\nSUPPRIMER TOUTES LES DONNÉES");
         System.out.println("ATTENTION: Cette opération supprimera définitivement toutes les données du système.");
         System.out.print("Êtes-vous sûr de vouloir continuer? (oui/non): ");
         String confirmation = scanner.nextLine().trim().toLowerCase();
