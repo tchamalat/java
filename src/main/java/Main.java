@@ -1294,7 +1294,6 @@ public class Main {
             return;
         }
 
-        // Supprimer les fichiers .dat
         File dataDir = new File("data");
         if (dataDir.exists()) {
             File[] files = dataDir.listFiles();
@@ -1310,49 +1309,9 @@ public class Main {
             }
         }
 
-        // Réinitialiser l'instance de GestionDonnees
         gestionDonnees = new GestionDonnees();
 
         System.out.println("Toutes les données ont été supprimées avec succès!");
-    }
-
-    private static void SuppressionFichier() {
-        boolean retour = false;
-        while (!retour) {
-            System.out.println("\nSuppression d'un fichier");
-            System.out.println("1. Suppression des Personnes");
-            System.out.println("2. Suppression des Vols");
-            System.out.println("3. Suppression des Réservations");
-            System.out.println("4. Suppression des Avions");
-            System.out.println("5. Suppression des Aéroports");
-            System.out.println("0. Quitter");
-            System.out.println("\n ");
-
-            int choix = lireEntier("Entrez votre choix : ");
-
-            switch (choix) {
-                case 1:
-                    //SuppressionPersonnes();
-                    break;
-                case 2:
-                    //SuppressionVols();
-                    break;
-                case 3:
-                    //SuppressionReservations();
-                    break;
-                case 4:
-                    //SuppressionAvions();
-                    break;
-                case 5:
-                    //SuppressionAeroports();
-                    break;
-                case 0:
-                    retour = true;
-                    break;
-                default:
-                    System.out.println("Choix invalide. Veuillez réessayer.");
-            }
-        }
     }
 
     private static String lireChaine(String message) {
