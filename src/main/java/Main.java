@@ -816,9 +816,9 @@ public class Main {
     }
 
     private static void SuppressionTout() {
-        System.out.println("\n=== SUPPRIMER TOUTES LES DONNÉES ===");
-        System.out.println("ATTENTION: Cette opération supprimera définitivement toutes les données du système.");
-        System.out.print("Êtes-vous sûr de vouloir continuer? (oui/non): ");
+        System.out.println("\nSUPPRIMER TOUTES LES DONNÉES");
+        System.out.println("ATTENTION : Cette opération supprimera définitivement toutes les données du système.");
+        System.out.print("Êtes-vous sûr de vouloir continuer? (oui/non) : ");
         String confirmation = scanner.nextLine().trim().toLowerCase();
 
         if (!confirmation.equals("oui")) {
@@ -834,7 +834,7 @@ public class Main {
                     if (file.getName().endsWith(".dat")) {
                         boolean deleted = file.delete();
                         if (!deleted) {
-                            System.err.println("Impossible de supprimer le fichier: " + file.getName());
+                            System.err.println("Impossible de supprimer le fichier : " + file.getName());
                         }
                     }
                 }
@@ -843,7 +843,7 @@ public class Main {
 
         gestionDonnees = new GestionDonnees();
 
-        System.out.println("Toutes les données ont été supprimées avec succès!");
+        System.out.println("Toutes les données ont été supprimées avec succès !");
     }
 
     private static String lireChaine(String message) {
