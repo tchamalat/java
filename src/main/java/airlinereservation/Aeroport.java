@@ -32,16 +32,8 @@ public class Aeroport implements Serializable {
         return ville;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public List<Vol> getVolsDepart() {
@@ -57,17 +49,6 @@ public class Aeroport implements Serializable {
         gestionDonnees.ajouterAeroport(this);
     }
 
-    public static Aeroport trouverAeroport(String nom, GestionDonnees gestionDonnees) {
-        return gestionDonnees.trouverAeroport(nom);
-    }
-
-    public void modifierAeroport(GestionDonnees gestionDonnees) {
-        gestionDonnees.modifierAeroport(this);
-    }
-
-    public void supprimerAeroport(GestionDonnees gestionDonnees) {
-        gestionDonnees.supprimerAeroport(this.nom);
-    }
 
     // Méthodes demandées dans le diagramme
     public void affecterVol(Vol vol, boolean estDepart) {
