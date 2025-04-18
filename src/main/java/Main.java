@@ -798,44 +798,13 @@ public class Main {
 
             switch (choix) {
                 case 1:
-                    SuppressionAdministration();
-                    break;
-                case 2:
-                    ImportationAdministration();
-                    break;
-                case 3:
-                    exporterDonnees();
-                    break;
-                case 0:
-                    retour = true;
-                    break;
-                default:
-                    System.out.println("Choix invalide. Veuillez réessayer.");
-            }
-        }
-    }
-
-    private static void SuppressionAdministration() {
-        boolean retour = false;
-        while (!retour) {
-            System.out.println("\nSupprimer des données");
-            System.out.println("1. Supprimer toutes les données");
-            System.out.println("2. Supprimer un fichier");
-            System.out.println("3. Retour");
-            System.out.println("0. Retour au menu principal");
-            System.out.println("\n ");
-
-            int choix = lireEntier("Entrez votre choix : ");
-
-            switch (choix) {
-                case 1:
                     SuppressionTout();
                     break;
                 case 2:
-                    SuppressionFichier();
+                    //ImportationAdministration();
                     break;
                 case 3:
-                    Administration();
+                    exporterDonnees();
                     break;
                 case 0:
                     retour = true;
