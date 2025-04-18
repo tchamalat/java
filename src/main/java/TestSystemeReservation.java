@@ -56,7 +56,7 @@ public class TestSystemeReservation {
     }
 
     private static void testCreationPersonne() {
-        System.out.println("Test: Création de personnes...");
+        System.out.println("Test : Création de personnes...");
 
         // Création d'un pilote
         Pilote pilote = new Pilote("P001", "Jean Dupont", "123 Rue de Paris", "0123456789",
@@ -90,11 +90,11 @@ public class TestSystemeReservation {
         assert "Pierre Durand".equals(passagerTrouve.getNom()) : "Le nom du passager est incorrect";
         assert "PASS123".equals(passagerTrouve.getPasseport()) : "Le passeport du passager est incorrect";
 
-        System.out.println("Test de création de personnes réussi!");
+        System.out.println("Test de création de personnes réussi !");
     }
 
     private static void testCreationAvion() {
-        System.out.println("Test: Création d'avions...");
+        System.out.println("Test : Création d'avions...");
 
         // Création d'un avion
         Avion avion = new Avion("F-ABCD", "Boeing 737", 150);
@@ -106,11 +106,11 @@ public class TestSystemeReservation {
         assert "Boeing 737".equals(avionTrouve.getModele()) : "Le modèle de l'avion est incorrect";
         assert 150 == avionTrouve.getCapacite() : "La capacité de l'avion est incorrecte";
 
-        System.out.println("Test de création d'avions réussi!");
+        System.out.println("Test de création d'avions réussi !");
     }
 
     private static void testCreationVol() {
-        System.out.println("Test: Création de vols...");
+        System.out.println("Test : Création de vols...");
 
         // Création d'un vol
         LocalDateTime depart = LocalDateTime.now().plusDays(1);
@@ -129,7 +129,7 @@ public class TestSystemeReservation {
     }
 
     private static void testAffectationAvionVol() {
-        System.out.println("Test: Affectation d'avions aux vols...");
+        System.out.println("Test : Affectation d'avions aux vols...");
 
         // Création d'un avion et d'un vol
         Avion avion = new Avion("F-WXYZ", "Airbus A320", 180);
@@ -152,11 +152,11 @@ public class TestSystemeReservation {
         assert avion.verifierDisponibilite(depart.minusDays(1), depart.minusHours(1)) : "L'avion devrait être disponible pour cette période";
         assert !avion.verifierDisponibilite(depart, arrivee) : "L'avion ne devrait pas être disponible pour cette période";
 
-        System.out.println("Test d'affectation d'avions aux vols réussi!");
+        System.out.println("Test d'affectation d'avions aux vols réussi !");
     }
 
     private static void testAffectationEquipageVol() {
-        System.out.println("Test: Affectation d'équipage aux vols...");
+        System.out.println("Test : Affectation d'équipage aux vols...");
 
         // Création d'un pilote, d'un personnel de cabine et d'un vol
         Pilote pilote = new Pilote("P002", "Jacques Martin", "123 Rue de Paris", "0123456789",
@@ -182,11 +182,11 @@ public class TestSystemeReservation {
         assert vol.equals(pilote.obtenirVol("AF789")) : "Le vol n'a pas été correctement associé au pilote";
         assert vol.equals(personnel.obtenirVol("AF789")) : "Le vol n'a pas été correctement associé au personnel de cabine";
 
-        System.out.println("Test d'affectation d'équipage aux vols réussi!");
+        System.out.println("Test d'affectation d'équipage aux vols réussi !");
     }
 
     private static void testReservationVol() {
-        System.out.println("Test: Réservation de vols...");
+        System.out.println("Test : Réservation de vols...");
 
         // Création d'un passager et d'un vol
         Passager passager = new Passager("PA002", "Lucie Dubois", "789 Boulevard de Marseille", "0567891234", "PASS456");
@@ -216,11 +216,11 @@ public class TestSystemeReservation {
         assert !passager.getReservations().contains(reservation) : "La réservation n'a pas été retirée de la liste des réservations du passager";
         assert !vol.getPassagers().contains(passager) : "Le passager n'a pas été retiré de la liste des passagers du vol";
 
-        System.out.println("Test de réservation de vols réussi!");
+        System.out.println("Test de réservation de vols réussi !");
     }
 
     private static void testModificationVol() {
-        System.out.println("Test: Modification de vols...");
+        System.out.println("Test : Modification de vols...");
 
         // Création d'un vol
         LocalDateTime depart = LocalDateTime.now().plusDays(5);
@@ -240,11 +240,11 @@ public class TestSystemeReservation {
         assert nouveauDepart.equals(volModifie.getDateHeureDepart()) : "La date de départ du vol après modification est incorrecte";
         assert nouvelleArrivee.equals(volModifie.getDateHeureArrivee()) : "La date d'arrivée du vol après modification est incorrecte";
 
-        System.out.println("Test de modification de vols réussi!");
+        System.out.println("Test de modification de vols réussi !");
     }
 
     private static void testAnnulationVol() {
-        System.out.println("Test: Annulation de vols...");
+        System.out.println("Test : Annulation de vols...");
 
         // Création d'un vol
         LocalDateTime depart = LocalDateTime.now().plusDays(6);
@@ -264,11 +264,11 @@ public class TestSystemeReservation {
         boolean resultatSecondAnnulation = vol.annulerVol(gestionDonnees);
         assert !resultatSecondAnnulation : "La seconde annulation du vol aurait dû échouer";
 
-        System.out.println("Test d'annulation de vols réussi!");
+        System.out.println("Test d'annulation de vols réussi !");
     }
 
     private static void testCreationAeroport() {
-        System.out.println("Test: Création d'aéroports...");
+        System.out.println("Test : Création d'aéroports...");
 
         // Création d'un aéroport
         Aeroport aeroport = new Aeroport("CDG", "Paris", "Aéroport Charles de Gaulle");
@@ -284,7 +284,7 @@ public class TestSystemeReservation {
     }
 
     private static void testAffectationVolAeroport() {
-        System.out.println("Test: Affectation de vols aux aéroports...");
+        System.out.println("Test : Affectation de vols aux aéroports...");
 
         // Création d'un aéroport et d'un vol
         Aeroport aeroportDepart = new Aeroport("ORY", "Paris", "Aéroport d'Orly");
@@ -311,7 +311,7 @@ public class TestSystemeReservation {
     }
 
     private static void testListingPassagersVol() {
-        System.out.println("Test: Listing des passagers d'un vol...");
+        System.out.println("Test : Listing des passagers d'un vol...");
 
         // Création d'un vol et de passagers
         LocalDateTime depart = LocalDateTime.now().plusDays(8);
