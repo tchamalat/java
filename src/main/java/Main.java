@@ -1,11 +1,14 @@
 import airlinereservation.*;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
     //écriture de toutes les fonctionnalités pour modifier le contenu des classes
@@ -39,6 +42,9 @@ public class Main {
                 case 5:
                     gestionAeroports();
                     break;
+                case 6:
+                    Administration();
+                    break;
                 case 0:
                     continuer = false;
                     System.out.println("Au revoir !");
@@ -57,6 +63,7 @@ public class Main {
         System.out.println("3. Gestion des Réservations");
         System.out.println("4. Gestion des Avions");
         System.out.println("5. Gestion des Aéroports");
+        System.out.println("6. Administration");
         System.out.println("0. Quitter");
         System.out.println("\n ");
     }
@@ -66,7 +73,7 @@ public class Main {
         while (!retour) {
             System.out.println("\nGESTION DES PERSONNES");
             System.out.println("1. Ajouter un Pilote");
-            System.out.println("2. Ajouter un Personnel de Cabine");
+            System.out.println("2. Ajouter un Personel de Cabine");
             System.out.println("3. Ajouter un Passager");
             System.out.println("4. Afficher les informations d'une Personne");
             System.out.println("5. Afficher le rôle d'un Employé");
@@ -780,6 +787,120 @@ public class Main {
         }
     }
 
+    private static void Administration() {
+        boolean retour = false;
+        while (!retour) {
+            System.out.println("\nAdministration");
+            System.out.println("1. supprimer des données");
+            System.out.println("2. importer des données");
+            System.out.println("3. exporter les données");
+            System.out.println("0. Retour au menu principal");
+            System.out.println("\n ");
+
+            int choix = lireEntier("Entrez votre choix : ");
+
+            switch (choix) {
+                case 1:
+                    SuppressionAdministration();
+                    break;
+                case 2:
+                    //ImportationAdministration();
+                    break;
+                case 3:
+                    exporterDonnees();
+                    break;
+                case 0:
+                    retour = true;
+                    break;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+            }
+        }
+    }
+
+    private static void SuppressionAdministration() {
+        boolean retour = false;
+        while (!retour) {
+            System.out.println("\nsupprimer des données");
+            System.out.println("1. supprimer toutes les données");
+            System.out.println("2. supprimer un fichier");
+            System.out.println("3. retour");
+            System.out.println("0. Retour au menu principal");
+            System.out.println("\n ");
+
+            int choix = lireEntier("Entrez votre choix : ");
+
+            switch (choix) {
+                case 1:
+                    SuppressionTout();
+                    break;
+                case 2:
+                    SuppressionFichier();
+                    break;
+                case 3:
+                    Administration();
+                    break;
+                case 0:
+                    retour = true;
+                    break;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+            }
+        }
+    }
+
+    private static void SuppressionTout() {
+        File dataDir = new File("data");
+        if (dataDir.exists()) {
+            File[] files = dataDir.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    file.delete();
+                }
+            }
+        }
+        System.out.println("Les données ont bien été supprimées");
+    }
+
+    private static void SuppressionFichier() {
+        boolean retour = false;
+        while (!retour) {
+            System.out.println("\nSuppression d'un fichier");
+            System.out.println("1. Suppression des Personnes");
+            System.out.println("2. Suppression des Vols");
+            System.out.println("3. Suppression des Réservations");
+            System.out.println("4. Suppression des Avions");
+            System.out.println("5. Suppression des Aéroports");
+            System.out.println("0. Quitter");
+            System.out.println("\n ");
+
+            int choix = lireEntier("Entrez votre choix : ");
+
+            switch (choix) {
+                case 1:
+                    //SuppressionPersonnes();
+                    break;
+                case 2:
+                    //SuppressionVols();
+                    break;
+                case 3:
+                    //SuppressionReservations();
+                    break;
+                case 4:
+                    //SuppressionAvions();
+                    break;
+                case 5:
+                    //SuppressionAeroports();
+                    break;
+                case 0:
+                    retour = true;
+                    break;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+            }
+        }
+    }
+
     private static String lireChaine(String message) {
         System.out.print(message);
         return scanner.nextLine();
@@ -820,4 +941,235 @@ public class Main {
             }
         }
     }
+
+    private static void exporterDonnees() {
+        System.out.println("\n=== EXPORTER LES DONNÉES EN FICHIER TEXTE ===");
+
+        // Créer un répertoire "exports" s'il n'existe pas
+        File exportsDir = new File("exports");
+        if (!exportsDir.exists() && !exportsDir.mkdirs()) {
+            System.err.println("Erreur lors de la création du répertoire exports/");
+            return;
+        }
+
+        // Générer un nom de fichier avec la date et l'heure actuelles
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        String timestamp = LocalDateTime.now().format(formatter);
+        String fileName = "exports/export_" + timestamp + ".txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            // Écrire un en-tête
+            writer.write("EXPORT DES DONNÉES DU SYSTÈME DE RÉSERVATION AÉRIENNE");
+            writer.newLine();
+            writer.write("Date d'exportation: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
+            writer.newLine();
+            writer.write("=".repeat(60));
+            writer.newLine();
+            writer.newLine();
+
+            // Exporter les pilotes
+            writer.write("PILOTES");
+            writer.newLine();
+            writer.write("-".repeat(30));
+            writer.newLine();
+            List<Pilote> pilotes = gestionDonnees.getTousPilotes();
+            if (pilotes.isEmpty()) {
+                writer.write("Aucun pilote enregistré.");
+            } else {
+                for (Pilote pilote : pilotes) {
+                    writer.write("ID: " + pilote.getIdentifiant());
+                    writer.newLine();
+                    writer.write("Nom: " + pilote.getNom());
+                    writer.newLine();
+                    writer.write("Adresse: " + pilote.getAdresse());
+                    writer.newLine();
+                    writer.write("Contact: " + pilote.getContact());
+                    writer.newLine();
+                    writer.write("Numéro Employé: " + pilote.getNumeroEmploye());
+                    writer.newLine();
+                    writer.write("Date Embauche: " + pilote.getDateEmbauche());
+                    writer.newLine();
+                    writer.write("Licence: " + pilote.getLicence());
+                    writer.newLine();
+                    writer.write("Heures de Vol: " + pilote.getHeuresDeVol());
+                    writer.newLine();
+                    writer.write("-".repeat(30));
+                    writer.newLine();
+                }
+            }
+            writer.newLine();
+
+            // Exporter le personnel de cabine
+            writer.write("PERSONNEL DE CABINE");
+            writer.newLine();
+            writer.write("-".repeat(30));
+            writer.newLine();
+            List<PersonnelCabine> personnels = gestionDonnees.getTousPersonnelCabine();
+            if (personnels.isEmpty()) {
+                writer.write("Aucun personnel de cabine enregistré.");
+            } else {
+                for (PersonnelCabine personnel : personnels) {
+                    writer.write("ID: " + personnel.getIdentifiant());
+                    writer.newLine();
+                    writer.write("Nom: " + personnel.getNom());
+                    writer.newLine();
+                    writer.write("Adresse: " + personnel.getAdresse());
+                    writer.newLine();
+                    writer.write("Contact: " + personnel.getContact());
+                    writer.newLine();
+                    writer.write("Numéro Employé: " + personnel.getNumeroEmploye());
+                    writer.newLine();
+                    writer.write("Date Embauche: " + personnel.getDateEmbauche());
+                    writer.newLine();
+                    writer.write("Qualification: " + personnel.getQualification());
+                    writer.newLine();
+                    writer.write("-".repeat(30));
+                    writer.newLine();
+                }
+            }
+            writer.newLine();
+
+            // Exporter les passagers
+            writer.write("PASSAGERS");
+            writer.newLine();
+            writer.write("-".repeat(30));
+            writer.newLine();
+            List<Passager> passagers = gestionDonnees.getTousPassagers();
+            if (passagers.isEmpty()) {
+                writer.write("Aucun passager enregistré.");
+            } else {
+                for (Passager passager : passagers) {
+                    writer.write("ID: " + passager.getIdentifiant());
+                    writer.newLine();
+                    writer.write("Nom: " + passager.getNom());
+                    writer.newLine();
+                    writer.write("Adresse: " + passager.getAdresse());
+                    writer.newLine();
+                    writer.write("Contact: " + passager.getContact());
+                    writer.newLine();
+                    writer.write("Passeport: " + passager.getPasseport());
+                    writer.newLine();
+                    writer.write("-".repeat(30));
+                    writer.newLine();
+                }
+            }
+            writer.newLine();
+
+            // Exporter les avions
+            writer.write("AVIONS");
+            writer.newLine();
+            writer.write("-".repeat(30));
+            writer.newLine();
+            List<Avion> avions = gestionDonnees.getTousAvions();
+            if (avions.isEmpty()) {
+                writer.write("Aucun avion enregistré.");
+            } else {
+                for (Avion avion : avions) {
+                    writer.write("Immatriculation: " + avion.getImmatriculation());
+                    writer.newLine();
+                    writer.write("Modèle: " + avion.getModele());
+                    writer.newLine();
+                    writer.write("Capacité: " + avion.getCapacite());
+                    writer.newLine();
+                    writer.write("-".repeat(30));
+                    writer.newLine();
+                }
+            }
+            writer.newLine();
+
+            // Exporter les vols
+            writer.write("VOLS");
+            writer.newLine();
+            writer.write("-".repeat(30));
+            writer.newLine();
+            List<Vol> vols = gestionDonnees.getTousVols();
+            if (vols.isEmpty()) {
+                writer.write("Aucun vol enregistré.");
+            } else {
+                for (Vol vol : vols) {
+                    writer.write("Numéro: " + vol.getNumeroVol());
+                    writer.newLine();
+                    writer.write("Origine: " + vol.getOrigine());
+                    writer.newLine();
+                    writer.write("Destination: " + vol.getDestination());
+                    writer.newLine();
+                    writer.write("Départ: " + vol.getDateHeureDepart().format(dateTimeFormatter));
+                    writer.newLine();
+                    writer.write("Arrivée: " + vol.getDateHeureArrivee().format(dateTimeFormatter));
+                    writer.newLine();
+                    writer.write("État: " + vol.getEtat());
+                    writer.newLine();
+
+                    if (vol.getAvion() != null) {
+                        writer.write("Avion: " + vol.getAvion().getImmatriculation() + " (" + vol.getAvion().getModele() + ")");
+                        writer.newLine();
+                    }
+
+                    if (vol.getPilote() != null) {
+                        writer.write("Pilote: " + vol.getPilote().getNom() + " (ID: " + vol.getPilote().getIdentifiant() + ")");
+                        writer.newLine();
+                    }
+
+                    writer.write("Nombre de passagers: " + vol.getPassagers().size());
+                    writer.newLine();
+                    writer.write("-".repeat(30));
+                    writer.newLine();
+                }
+            }
+            writer.newLine();
+
+            // Exporter les réservations
+            writer.write("RÉSERVATIONS");
+            writer.newLine();
+            writer.write("-".repeat(30));
+            writer.newLine();
+            List<Reservation> reservations = gestionDonnees.getToutesReservations();
+            if (reservations.isEmpty()) {
+                writer.write("Aucune réservation enregistrée.");
+            } else {
+                for (Reservation reservation : reservations) {
+                    writer.write("Numéro: " + reservation.getNumeroReservation());
+                    writer.newLine();
+                    writer.write("Date: " + reservation.getDateReservation().format(dateFormatter));
+                    writer.newLine();
+                    writer.write("Statut: " + reservation.getStatut());
+                    writer.newLine();
+                    writer.write("Vol: " + reservation.getVol().getNumeroVol());
+                    writer.newLine();
+                    writer.write("Passager: " + reservation.getPassager().getNom() + " (ID: " + reservation.getPassager().getIdentifiant() + ")");
+                    writer.newLine();
+                    writer.write("-".repeat(30));
+                    writer.newLine();
+                }
+            }
+            writer.newLine();
+
+            // Exporter les aéroports
+            writer.write("AÉROPORTS");
+            writer.newLine();
+            writer.write("-".repeat(30));
+            writer.newLine();
+            List<Aeroport> aeroports = gestionDonnees.getTousAeroports();
+            if (aeroports.isEmpty()) {
+                writer.write("Aucun aéroport enregistré.");
+            } else {
+                for (Aeroport aeroport : aeroports) {
+                    writer.write("Nom: " + aeroport.getNom());
+                    writer.newLine();
+                    writer.write("Ville: " + aeroport.getVille());
+                    writer.newLine();
+                    writer.write("Description: " + aeroport.getDescription());
+                    writer.newLine();
+                    writer.write("-".repeat(30));
+                    writer.newLine();
+                }
+            }
+
+            System.out.println("Exportation réussie! Fichier créé: " + fileName);
+
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'exportation des données: " + e.getMessage());
+        }
+    }
+
 }
