@@ -943,31 +943,31 @@ public class Main {
     }
 
     private static void exporterDonnees() {
-        System.out.println("\n=== EXPORTER LES DONNÉES EN FICHIER TEXTE ===");
+        System.out.println("\nEXPORTER LES DONNÉES EN FICHIER TEXTE");
 
-        // Créer un répertoire "exports" s'il n'existe pas
+        // On crée un répertoire "exports" s'il n'existe pas
         File exportsDir = new File("exports");
         if (!exportsDir.exists() && !exportsDir.mkdirs()) {
-            System.err.println("Erreur lors de la création du répertoire exports/");
+            System.err.println("Erreur lors de la création du répertoire exports.");
             return;
         }
 
-        // Générer un nom de fichier avec la date et l'heure actuelles
+        // On génère un nom de fichier avec la date et l'heure de la création du fichier
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
         String timestamp = LocalDateTime.now().format(formatter);
         String fileName = "exports/export_" + timestamp + ".txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            // Écrire un en-tête
+            // En-tête du fichier créé
             writer.write("EXPORT DES DONNÉES DU SYSTÈME DE RÉSERVATION AÉRIENNE");
             writer.newLine();
-            writer.write("Date d'exportation: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
+            writer.write("Date d'exportation : " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
             writer.newLine();
             writer.write("=".repeat(60));
             writer.newLine();
             writer.newLine();
 
-            // Exporter les pilotes
+            // Exportation les pilotes
             writer.write("PILOTES");
             writer.newLine();
             writer.write("-".repeat(30));
@@ -977,21 +977,21 @@ public class Main {
                 writer.write("Aucun pilote enregistré.");
             } else {
                 for (Pilote pilote : pilotes) {
-                    writer.write("ID: " + pilote.getIdentifiant());
+                    writer.write("ID : " + pilote.getIdentifiant());
                     writer.newLine();
-                    writer.write("Nom: " + pilote.getNom());
+                    writer.write("Nom : " + pilote.getNom());
                     writer.newLine();
-                    writer.write("Adresse: " + pilote.getAdresse());
+                    writer.write("Adresse : " + pilote.getAdresse());
                     writer.newLine();
-                    writer.write("Contact: " + pilote.getContact());
+                    writer.write("Contact : " + pilote.getContact());
                     writer.newLine();
-                    writer.write("Numéro Employé: " + pilote.getNumeroEmploye());
+                    writer.write("Numéro Employé : " + pilote.getNumeroEmploye());
                     writer.newLine();
-                    writer.write("Date Embauche: " + pilote.getDateEmbauche());
+                    writer.write("Date Embauche : " + pilote.getDateEmbauche());
                     writer.newLine();
-                    writer.write("Licence: " + pilote.getLicence());
+                    writer.write("Licence : " + pilote.getLicence());
                     writer.newLine();
-                    writer.write("Heures de Vol: " + pilote.getHeuresDeVol());
+                    writer.write("Heures de Vol : " + pilote.getHeuresDeVol());
                     writer.newLine();
                     writer.write("-".repeat(30));
                     writer.newLine();
@@ -999,7 +999,7 @@ public class Main {
             }
             writer.newLine();
 
-            // Exporter le personnel de cabine
+            // Exportation le personnel de cabine
             writer.write("PERSONNEL DE CABINE");
             writer.newLine();
             writer.write("-".repeat(30));
@@ -1009,19 +1009,19 @@ public class Main {
                 writer.write("Aucun personnel de cabine enregistré.");
             } else {
                 for (PersonnelCabine personnel : personnels) {
-                    writer.write("ID: " + personnel.getIdentifiant());
+                    writer.write("ID : " + personnel.getIdentifiant());
                     writer.newLine();
-                    writer.write("Nom: " + personnel.getNom());
+                    writer.write("Nom : " + personnel.getNom());
                     writer.newLine();
-                    writer.write("Adresse: " + personnel.getAdresse());
+                    writer.write("Adresse : " + personnel.getAdresse());
                     writer.newLine();
-                    writer.write("Contact: " + personnel.getContact());
+                    writer.write("Contact : " + personnel.getContact());
                     writer.newLine();
-                    writer.write("Numéro Employé: " + personnel.getNumeroEmploye());
+                    writer.write("Numéro Employé : " + personnel.getNumeroEmploye());
                     writer.newLine();
-                    writer.write("Date Embauche: " + personnel.getDateEmbauche());
+                    writer.write("Date Embauche : " + personnel.getDateEmbauche());
                     writer.newLine();
-                    writer.write("Qualification: " + personnel.getQualification());
+                    writer.write("Qualification : " + personnel.getQualification());
                     writer.newLine();
                     writer.write("-".repeat(30));
                     writer.newLine();
@@ -1029,7 +1029,7 @@ public class Main {
             }
             writer.newLine();
 
-            // Exporter les passagers
+            // Exportation les passagers
             writer.write("PASSAGERS");
             writer.newLine();
             writer.write("-".repeat(30));
@@ -1039,15 +1039,15 @@ public class Main {
                 writer.write("Aucun passager enregistré.");
             } else {
                 for (Passager passager : passagers) {
-                    writer.write("ID: " + passager.getIdentifiant());
+                    writer.write("ID : " + passager.getIdentifiant());
                     writer.newLine();
-                    writer.write("Nom: " + passager.getNom());
+                    writer.write("Nom : " + passager.getNom());
                     writer.newLine();
-                    writer.write("Adresse: " + passager.getAdresse());
+                    writer.write("Adresse : " + passager.getAdresse());
                     writer.newLine();
-                    writer.write("Contact: " + passager.getContact());
+                    writer.write("Contact : " + passager.getContact());
                     writer.newLine();
-                    writer.write("Passeport: " + passager.getPasseport());
+                    writer.write("Passeport : " + passager.getPasseport());
                     writer.newLine();
                     writer.write("-".repeat(30));
                     writer.newLine();
@@ -1055,7 +1055,7 @@ public class Main {
             }
             writer.newLine();
 
-            // Exporter les avions
+            // Exportation les avions
             writer.write("AVIONS");
             writer.newLine();
             writer.write("-".repeat(30));
@@ -1065,11 +1065,11 @@ public class Main {
                 writer.write("Aucun avion enregistré.");
             } else {
                 for (Avion avion : avions) {
-                    writer.write("Immatriculation: " + avion.getImmatriculation());
+                    writer.write("Immatriculation : " + avion.getImmatriculation());
                     writer.newLine();
-                    writer.write("Modèle: " + avion.getModele());
+                    writer.write("Modèle : " + avion.getModele());
                     writer.newLine();
-                    writer.write("Capacité: " + avion.getCapacite());
+                    writer.write("Capacité : " + avion.getCapacite());
                     writer.newLine();
                     writer.write("-".repeat(30));
                     writer.newLine();
@@ -1077,7 +1077,7 @@ public class Main {
             }
             writer.newLine();
 
-            // Exporter les vols
+            // Exportation les vols
             writer.write("VOLS");
             writer.newLine();
             writer.write("-".repeat(30));
@@ -1087,30 +1087,30 @@ public class Main {
                 writer.write("Aucun vol enregistré.");
             } else {
                 for (Vol vol : vols) {
-                    writer.write("Numéro: " + vol.getNumeroVol());
+                    writer.write("Numéro : " + vol.getNumeroVol());
                     writer.newLine();
-                    writer.write("Origine: " + vol.getOrigine());
+                    writer.write("Origine : " + vol.getOrigine());
                     writer.newLine();
-                    writer.write("Destination: " + vol.getDestination());
+                    writer.write("Destination : " + vol.getDestination());
                     writer.newLine();
-                    writer.write("Départ: " + vol.getDateHeureDepart().format(dateTimeFormatter));
+                    writer.write("Départ : " + vol.getDateHeureDepart().format(dateTimeFormatter));
                     writer.newLine();
-                    writer.write("Arrivée: " + vol.getDateHeureArrivee().format(dateTimeFormatter));
+                    writer.write("Arrivée : " + vol.getDateHeureArrivee().format(dateTimeFormatter));
                     writer.newLine();
-                    writer.write("État: " + vol.getEtat());
+                    writer.write("État : " + vol.getEtat());
                     writer.newLine();
 
                     if (vol.getAvion() != null) {
-                        writer.write("Avion: " + vol.getAvion().getImmatriculation() + " (" + vol.getAvion().getModele() + ")");
+                        writer.write("Avion : " + vol.getAvion().getImmatriculation() + " (" + vol.getAvion().getModele() + ")");
                         writer.newLine();
                     }
 
                     if (vol.getPilote() != null) {
-                        writer.write("Pilote: " + vol.getPilote().getNom() + " (ID: " + vol.getPilote().getIdentifiant() + ")");
+                        writer.write("Pilote : " + vol.getPilote().getNom() + " (ID: " + vol.getPilote().getIdentifiant() + ")");
                         writer.newLine();
                     }
 
-                    writer.write("Nombre de passagers: " + vol.getPassagers().size());
+                    writer.write("Nombre de passagers : " + vol.getPassagers().size());
                     writer.newLine();
                     writer.write("-".repeat(30));
                     writer.newLine();
@@ -1118,7 +1118,7 @@ public class Main {
             }
             writer.newLine();
 
-            // Exporter les réservations
+            // Exportation les réservations
             writer.write("RÉSERVATIONS");
             writer.newLine();
             writer.write("-".repeat(30));
@@ -1128,15 +1128,15 @@ public class Main {
                 writer.write("Aucune réservation enregistrée.");
             } else {
                 for (Reservation reservation : reservations) {
-                    writer.write("Numéro: " + reservation.getNumeroReservation());
+                    writer.write("Numéro : " + reservation.getNumeroReservation());
                     writer.newLine();
-                    writer.write("Date: " + reservation.getDateReservation().format(dateFormatter));
+                    writer.write("Date : " + reservation.getDateReservation().format(dateFormatter));
                     writer.newLine();
-                    writer.write("Statut: " + reservation.getStatut());
+                    writer.write("Statut : " + reservation.getStatut());
                     writer.newLine();
-                    writer.write("Vol: " + reservation.getVol().getNumeroVol());
+                    writer.write("Vol : " + reservation.getVol().getNumeroVol());
                     writer.newLine();
-                    writer.write("Passager: " + reservation.getPassager().getNom() + " (ID: " + reservation.getPassager().getIdentifiant() + ")");
+                    writer.write("Passager : " + reservation.getPassager().getNom() + " (ID : " + reservation.getPassager().getIdentifiant() + ")");
                     writer.newLine();
                     writer.write("-".repeat(30));
                     writer.newLine();
@@ -1144,7 +1144,7 @@ public class Main {
             }
             writer.newLine();
 
-            // Exporter les aéroports
+            // Exportation les aéroports
             writer.write("AÉROPORTS");
             writer.newLine();
             writer.write("-".repeat(30));
@@ -1154,21 +1154,21 @@ public class Main {
                 writer.write("Aucun aéroport enregistré.");
             } else {
                 for (Aeroport aeroport : aeroports) {
-                    writer.write("Nom: " + aeroport.getNom());
+                    writer.write("Nom : " + aeroport.getNom());
                     writer.newLine();
-                    writer.write("Ville: " + aeroport.getVille());
+                    writer.write("Ville : " + aeroport.getVille());
                     writer.newLine();
-                    writer.write("Description: " + aeroport.getDescription());
+                    writer.write("Description : " + aeroport.getDescription());
                     writer.newLine();
                     writer.write("-".repeat(30));
                     writer.newLine();
                 }
             }
 
-            System.out.println("Exportation réussie! Fichier créé: " + fileName);
+            System.out.println("Exportation réussie ! Fichier créé : " + fileName);
 
         } catch (IOException e) {
-            System.err.println("Erreur lors de l'exportation des données: " + e.getMessage());
+            System.err.println("Erreur lors de l'exportation des données : " + e.getMessage());
         }
     }
 
