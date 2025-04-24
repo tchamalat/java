@@ -1,6 +1,8 @@
 import airlinereservation.*;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -783,7 +785,7 @@ public class Main {
             }
         }
     }
-    //mini modif
+
     private static void Administration() {
         boolean retour = false;
         while (!retour) {
@@ -801,7 +803,7 @@ public class Main {
                     SuppressionTout();
                     break;
                 case 2:
-                    //ImportationAdministration();
+                    ImportationAdministration();
                     break;
                 case 3:
                     exporterDonnees();
@@ -888,7 +890,44 @@ public class Main {
     }
 
     private static void exporterDonnees() {
-        System.out.println("\nEXPORTER LES DONNÉES EN FICHIER TEXTE");
+        System.out.println("\nExport des données en fichier .txt et .dat ");
+
+        // Création du répertoire "export_dat" s'il n'existe pas
+        File exportDatDir = new File("export_dat");
+        if (!exportDatDir.exists() && !exportDatDir.mkdirs()) {
+            System.err.println("Erreur lors de la création du répertoire export_dat.");
+            return;
+        }
+
+        // Création d'un sous-dossier avec la date et l'heure
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        String timestamp = LocalDateTime.now().format(formatter);
+        File timestampDir = new File(exportDatDir, timestamp);
+        if (!timestampDir.exists() && !timestampDir.mkdirs()) {
+            System.err.println("Erreur lors de la création du répertoire avec horodatage.");
+            return;
+        }
+
+        // Copier tous les fichiers .dat du dossier "data" vers le sous-dossier
+        File dataDir = new File("data");
+        if (dataDir.exists() && dataDir.isDirectory()) {
+            File[] files = dataDir.listFiles((dir, name) -> name.endsWith(".dat"));
+            if (files != null) {
+                for (File file : files) {
+                    File destFile = new File(timestampDir, file.getName());
+                    try {
+                        Files.copy(file.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    } catch (IOException e) {
+                        System.err.println("Erreur lors de la copie du fichier : " + file.getName());
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("Fichiers .dat exportés dans : " + timestampDir.getAbsolutePath());
+            } else {
+                System.out.println("Aucun fichier .dat trouvé dans le dossier 'data'.");
+            }
+        }
+
 
         // On crée un répertoire "exports" s'il n'existe pas
         File exportsDir = new File("exports");
@@ -898,8 +937,6 @@ public class Main {
         }
 
         // On génère un nom de fichier avec la date et l'heure de la création du fichier
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
-        String timestamp = LocalDateTime.now().format(formatter);
         String fileName = "exports/export_" + timestamp + ".txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
@@ -1110,11 +1147,77 @@ public class Main {
                 }
             }
 
-            System.out.println("Exportation réussie ! Fichier créé : " + fileName);
+            System.out.println("Fichier texte créé : " + fileName);
 
         } catch (IOException e) {
             System.err.println("Erreur lors de l'exportation des données : " + e.getMessage());
         }
     }
 
+    private static void ImportationAdministration() {
+        System.out.println("\nImportation de données");
+
+        // Chemin du répertoire contenant les exports
+        File exportDatDir = new File("export_dat");
+        if (!exportDatDir.exists() || !exportDatDir.isDirectory()) {
+            System.out.println("Le répertoire 'export_dat' n'existe pas ou est inaccessible.");
+            return;
+        }
+
+        // Liste des sous-dossiers (datés) dans export_dat
+        File[] subDirs = exportDatDir.listFiles(File::isDirectory);
+        if (subDirs == null || subDirs.length == 0) {
+            System.out.println("Aucune exportation trouvée dans 'export_dat'.");
+            return;
+        }
+
+        // Affichage des dossiers disponibles pour sélectionner une date
+        System.out.println("Sélectionnez une date d'exportation parmi les suivantes :");
+        for (int i = 0; i < subDirs.length; i++) {
+            System.out.println((i + 1) + ". " + subDirs[i].getName());
+        }
+
+        // Lecture du choix de l'utilisateur
+        int choix = lireEntier("Entrez le numéro correspondant à la date souhaitée : ");
+        if (choix < 1 || choix > subDirs.length) {
+            System.out.println("Choix invalide. Opération annulée.");
+            return;
+        }
+
+        // Sous-dossier sélectionné
+        File selectedDir = subDirs[choix - 1];
+
+        // Vérifier l'existence du dossier data
+        File dataDir = new File("data");
+        if (!dataDir.exists() || !dataDir.isDirectory()) {
+            System.out.println("Le répertoire 'data' n'existe pas. Création du répertoire...");
+            if (!dataDir.mkdirs()) {
+                System.err.println("Erreur lors de la création du répertoire 'data'.");
+                return;
+            }
+        }
+
+        // Remplacement des fichiers dans 'data' par ceux de l'export sélectionné
+        File[] exportFiles = selectedDir.listFiles((dir, name) -> name.endsWith(".dat"));
+        if (exportFiles == null || exportFiles.length == 0) {
+            System.out.println("Aucun fichier .dat trouvé dans l'export sélectionné.");
+            return;
+        }
+
+        System.out.println("Remplacement des fichiers dans 'data'...");
+        for (File exportFile : exportFiles) {
+            File destFile = new File(dataDir, exportFile.getName());
+            try {
+                Files.copy(exportFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Fichier remplacé : " + exportFile.getName());
+            } catch (IOException e) {
+                System.err.println("Erreur lors de la copie du fichier : " + exportFile.getName());
+                e.printStackTrace();
+            }
+        }
+
+        // Réactualisation des classes après l'importation
+        gestionDonnees.chargerDonnees();
+        System.out.println("Importation terminée et données réactualisées.");
+    }
 }

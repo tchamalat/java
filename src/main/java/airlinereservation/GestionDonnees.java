@@ -295,7 +295,7 @@ public class GestionDonnees {
 
     // Gestion du chargement
     @SuppressWarnings("unchecked")
-    private void chargerDonnees() {
+    public void chargerDonnees() {
         // Créer le répertoire data s'il n'existe pas
         File dataDir = new File(DATA_DIR);
         if (!dataDir.exists()) {
